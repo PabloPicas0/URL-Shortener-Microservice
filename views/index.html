@@ -13,28 +13,40 @@
   </head>
   <body>
     <h1 class="title">URL Shortener Microservice</h1>
-    <div>
-      <div>
-        <h3>Short URL Creation</h3>
-        <p>Example:</p>
-        <code>POST url/api/shorturl - https://www.google.com</code>
-      </div>
-      <form action="/api/shorturl" method="post">
-        <fieldset>
-          <legend>URL Shortener</legend>
-          <label for="url-input">URL</label>
-          <input type="text" id="url-input" name="url" placeholder="https://github.com/PabloPicas0" />
-          <button type="submit">Submit</button>
-        </fieldset>
-      </form>
-    </div>
+    <div class="container">
+      <div class="creation">
+        <div class="about-creation">
+          <h3>Short URL Creation</h3>
+          <p>Example:</p>
+          <code>POST url/api/shorturl - https://www.google.com</code>
+        </div>
 
-    <div class="wrapper">
-      <div class="box">
-        <h3>Example Usage</h3>
-        <code>url/api/shorturl/3</code>
-        <h3>Will Redirect to</h3>
-        <code>https://github.com/PabloPicas0</code>
+        <form action="/api/shorturl" method="post">
+          <fieldset>
+            <legend>URL Shortener</legend>
+            <label for="url-input">URL:</label>
+            <input type="text" id="url-input" name="url" placeholder="https://github.com/PabloPicas0" size="23" />
+            <button type="submit">Submit</button>
+          </fieldset>
+        </form>
+      </div>
+
+      <div class="usage">
+        <div class="box">
+          <h3>Valid URL</h3>
+          <p>Example Usage:</p>
+          <code>url/api/shorturl/3</code>
+          <h3>Will Redirect to</h3>
+          <code>https://github.com/PabloPicas0</code>
+        </div>
+
+        <div class="box">
+          <h3>Entering invalid URL</h3>
+          <p>Example Usage:</p>
+          <code>www.example.com</code>
+          <p>Example output:</p>
+          <code>{ error: 'invalid url' }</code>
+        </div>
       </div>
     </div>
   </body>

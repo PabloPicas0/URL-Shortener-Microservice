@@ -8,6 +8,60 @@ body {
     padding: 0;
 }
 
+label {
+    margin-right: 5px;
+}
+
+h3 {
+    margin-top: 0px;
+}
+
+input {
+    padding: 5px 10px;
+}
+
+button {
+    padding: 5px 10px;
+}
+
+fieldset {
+    text-align: center;
+}
+
 .title {
     text-align: center;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.creation {
+    padding: 20px;
+    margin: 0px 5px 0px 5px;
+    border: 1px solid black;
+}
+
+.about-creation {
+    margin-bottom: 30px;
+}
+
+.usage {
+    margin-top: 10px;
+}
+
+.box {
+    padding: 20px;
+    border: 1px solid black;
+    margin: 0px 5px 10px 5px;
+}
+
+@media (max-width: 370px) {
+    button {
+        margin-top: 5px;
+    }
+    input {
+        display: block;
+    }
 }
