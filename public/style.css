@@ -1,92 +1,92 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 :root {
-    --main-background: #212121;
-    --code-color: #9c9c9c;
-    --text-color: #f5f5f5;
-    --border-color: #ff7f50;
+  --main-background: #212121;
+  --code-color: #9c9c9c;
+  --text-color: #f5f5f5;
+  --border-color: #ff7f50;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: var(--main-background);
-    color: var(--text-color);
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--main-background);
+  color: var(--text-color);
 }
 
 label {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
 h3 {
-    margin-top: 0px;
+  margin-top: 0px;
 }
 
 input {
-    padding: 5px 2px;
+  padding: 5px 2px;
 }
 
 button {
-    padding: 5px 10px;
+  padding: 5px 10px;
 }
 
 fieldset {
-    text-align: center;
+  text-align: center;
 }
 
 code {
-    display: block;
-    background-color: var(--code-color);
-    border-radius: 5px;
-    padding: 5px 10px;
+  display: block;
+  background-color: var(--code-color);
+  border-radius: 5px;
+  padding: 5px 10px;
 }
 
 .title {
-    text-align: center;
+  text-align: center;
 }
 
 .container {
-    max-width: 600px;
-    margin: 0 auto;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .creation {
-    padding: 20px;
-    margin: 0px 5px 0px 5px;
-    border: 1px solid var(--border-color);
-    animation: borderAnimation 5s infinite alternate;
+  padding: 20px;
+  margin: 0px 5px 0px 5px;
+  border: 1px solid var(--border-color);
+  animation: borderAnimation 5s infinite alternate;
 }
 
 .about-creation {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .usage {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .usage-box {
-    padding: 20px;
-    border: 1px solid var(--border-color);
-    margin: 0px 5px 10px 5px;
-    animation: borderAnimation 5s infinite alternate;
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  margin: 0px 5px 10px 5px;
+  animation: borderAnimation 5s infinite alternate;
 }
 
 @keyframes borderAnimation {
-    50% {
-        border-color: #3333cc;
-    }
+  50% {
+    border-color: #3333cc;
+  }
 }
 
 @media (max-width: 415px) {
-    button {
-        margin-top: 5px;
-    }
-    input {
-        display: block;
-        margin: 0px auto;
-    }
+  button {
+    margin-top: 5px;
+  }
+  input {
+    display: block;
+    margin: 0px auto;
+  }
 }
