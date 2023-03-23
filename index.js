@@ -1,18 +1,20 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const bodyParser = require("body-parser");
 
 const app = express();
 
 app.use(cors());
 app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html");
 });
 
 app.post("/api/shorturl", (req, res) => {
-  res.json({ message: "panw3d" });
+  res.json({ orginal_URL: req.body.url });
 });
 
 const port = process.env.PORT || 3000;
