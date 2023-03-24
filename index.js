@@ -1,9 +1,12 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+let mongoose = require("mongoose")
 const bodyParser = require("body-parser");
 const url = require("url");
 const dns = require("dns");
+
+mongoose.connect(process.env.MONGO_URI)
 
 const app = express();
 
@@ -20,6 +23,7 @@ app.post("/api/shorturl", (req, res) => {
   const parsedURL = url.parse(submittedURL);
   const hostname = parsedURL.hostname;
 
+  // If user enter different url than this in example the hostname = null 
   if (!hostname) {
     return res.json({ error: "invalid url" });
   }
