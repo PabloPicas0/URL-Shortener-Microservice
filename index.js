@@ -1,12 +1,24 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-let mongoose = require("mongoose")
+
+const mongoose = require("mongoose");
+
 const bodyParser = require("body-parser");
+
 const url = require("url");
 const dns = require("dns");
 
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URI);
+
+const urlSchema = new mongoose.Schema({
+  original_url: {
+    type: String,
+    required: true,
+  },
+});
+
+const urlModel = mongoose.model("urlModel", urlSchema);
 
 const app = express();
 
@@ -23,17 +35,33 @@ app.post("/api/shorturl", (req, res) => {
   const parsedURL = url.parse(submittedURL);
   const hostname = parsedURL.hostname;
 
-  // If user enter different url than this in example the hostname = null 
+  // If user enter different url than this in example the hostname = null
   if (!hostname) {
     return res.json({ error: "invalid url" });
   }
 
-  dns.lookup(hostname, (err, address) => {
-    if (err) {
-      console.error(err);
-      return res.json({ error: "Some error occured" });
+  const newUrl = new urlModel({
+    original_url: submittedURL,
+  });
+
+  urlModel.findOne({ original_url: submittedURL }).then((doc) => {
+    const verifyUrl = (hostname, doc) => {
+      dns.lookup(hostname, (err, address) => {
+        if (err) {
+          console.error(err);
+          return res.json({ error: "Some error occured" });
+        }
+        return res.json({ orginal_URL: doc.original_url, short_url: doc._id });
+      });
+    };
+
+    if (!doc) {
+      newUrl.save().then((doc) => {
+        verifyUrl(hostname, doc);
+      });
     }
-    return res.json({ orginal_URL: req.body.url });
+
+    verifyUrl(hostname, doc);
   });
 });
 
