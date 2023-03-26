@@ -16,6 +16,11 @@ const urlSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  short_url: {
+    type: Number,
+    required: true,
+    unique: true,
+  },
 });
 
 const urlModel = mongoose.model("urlModel", urlSchema);
@@ -34,6 +39,7 @@ app.post("/api/shorturl", (req, res) => {
   const submittedURL = req.body.url;
   const parsedURL = url.parse(submittedURL);
   const hostname = parsedURL.hostname;
+  const number = new Date().getTime();
 
   // If user enter different url than this in example the hostname = null
   if (!hostname) {
@@ -42,6 +48,7 @@ app.post("/api/shorturl", (req, res) => {
 
   const newUrl = new urlModel({
     original_url: submittedURL,
+    short_url: number,
   });
 
   urlModel.findOne({ original_url: submittedURL }).then((doc) => {
@@ -51,7 +58,8 @@ app.post("/api/shorturl", (req, res) => {
           console.error(err);
           return res.json({ error: "Some error occured" });
         }
-        return res.json({ orginal_URL: doc.original_url, short_url: doc._id });
+
+        return res.json({ orginal_URL: doc.original_url, short_url: doc.short_url });
       });
     };
 
@@ -59,10 +67,29 @@ app.post("/api/shorturl", (req, res) => {
       newUrl.save().then((doc) => {
         verifyUrl(hostname, doc);
       });
+    } else {
+      verifyUrl(hostname, doc);
     }
-
-    verifyUrl(hostname, doc);
   });
+});
+
+app.get("/api/shorturl/:word", (req, res) => {
+  const { word } = req.params;
+  const regex = /^\d{13}/;
+
+  if (regex.test(word)) {
+    const number = Number(word); // In db short_url are numbers so we need convert string to number
+
+    urlModel.findOne({ short_url: number }).then((doc) => {
+      if (!doc) {
+        res.json("Not in database");
+      } else {
+        res.status(301).redirect(doc.original_url);
+      }
+    });
+  } else {
+    res.json("invalid url");
+  }
 });
 
 const port = process.env.PORT || 3000;
