@@ -59,7 +59,7 @@ app.post("/api/shorturl", (req, res) => {
           return res.json({ error: "Some error occured" });
         }
 
-        return res.json({ orginal_URL: doc.original_url, short_url: doc.short_url });
+        return res.json({ original_url: doc.original_url, short_url: doc.short_url });
       });
     };
 
