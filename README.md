@@ -29,7 +29,7 @@ Once you have connected to your cluster, create your `.env` file.
 MONGO_URI_PROD=mongodb+srv://<user>:<password>@<cluster#-dbname>.mongodb.net/test
 
 # MongoDB Development
-MONGO_URI_DEV=mongodb://localhost:27017/<db_name>
+MONGO_URI_DEV=mongodb://localhost:21372/<db_name>
 
 # Hostname
 HOSTNAME=<your-site-hostname>
